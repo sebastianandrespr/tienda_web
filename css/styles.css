@@ -1,0 +1,72 @@
+@import url('https://fonts.googleapis.com/css2?family=Public+Sans:wght@300;400;500;600;700;800;900&display=swap');
+
+:root {
+    --primary: #ec5b13;
+    --background-light: #f8f6f6;
+    --background-dark: #221610;
+    --slate-50: #f8fafc;
+    --slate-100: #f1f5f9;
+    --slate-200: #e2e8f0;
+    --slate-400: #94a3b8;
+    --slate-500: #64748b;
+    --slate-600: #475569;
+    --slate-700: #334155;
+    --slate-800: #1e293b;
+    --slate-900: #0f172a;
+}
+
+body {
+    font-family: 'Public Sans', sans-serif;
+    background-color: var(--background-light);
+    color: var(--slate-900);
+}
+
+.dark body {
+    background-color: var(--background-dark);
+    color: var(--slate-100);
+}
+
+/* Base Tailwind-like utility classes for flexibility if needed, 
+   but our main design comes from the mockups using Tailwind CDN */
+
+.btn-primary {
+    background-color: var(--primary);
+    color: white;
+    padding: 0.5rem 1rem;
+    border-radius: 0.75rem;
+    font-weight: 700;
+    transition: all 0.2s;
+}
+
+.btn-primary:hover {
+    filter: brightness(1.1);
+}
+
+.card {
+    background: white;
+    border: 1px solid var(--slate-200);
+    border-radius: 0.75rem;
+    overflow: hidden;
+    box-shadow: 0 1px 3px rgba(0, 0, 0, 0.1);
+}
+
+.dark .card {
+    background: rgba(30, 41, 59, 0.4);
+    border-color: var(--slate-800);
+}
+
+.material-symbols-outlined {
+    font-family: 'Material Symbols Outlined' !important;
+    font-weight: normal;
+    font-style: normal;
+    font-size: 24px;
+    line-height: 1;
+    letter-spacing: normal;
+    text-transform: none;
+    display: inline-block;
+    white-space: nowrap;
+    word-wrap: normal;
+    direction: ltr;
+    -webkit-font-feature-settings: 'liga';
+    -webkit-font-smoothing: antialiased;
+}

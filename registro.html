@@ -1,0 +1,134 @@
+<!DOCTYPE html>
+<html lang="es">
+
+<head>
+    <meta charset="utf-8" />
+    <meta content="width=device-width, initial-scale=1.0" name="viewport" />
+    <title>Registro - MiTienda</title>
+    <script src="https://cdn.tailwindcss.com?plugins=forms,container-queries"></script>
+    <link href="https://fonts.googleapis.com/css2?family=Public+Sans:wght@300;400;500;600;700;900&display=swap"
+        rel="stylesheet" />
+    <link href="https://fonts.googleapis.com/css2?family=Material+Symbols+Outlined:wght,FILL@100..700,0..1&display=swap"
+        rel="stylesheet" />
+    <link rel="stylesheet" href="css/styles.css">
+    <script id="tailwind-config">
+        tailwind.config = {
+            darkMode: "class",
+            theme: {
+                extend: {
+                    colors: {
+                        "primary": "#ec5b13",
+                        "background-light": "#f8f6f6",
+                        "background-dark": "#221610",
+                    },
+                    fontFamily: {
+                        "display": ["Public Sans"]
+                    },
+                    borderRadius: { "DEFAULT": "0.25rem", "lg": "0.5rem", "xl": "0.75rem", "full": "9999px" },
+                },
+            },
+        }
+    </script>
+</head>
+
+<body class="bg-background-light dark:bg-background-dark text-slate-900 dark:text-slate-100 min-h-screen">
+    <main class="flex min-h-screen w-full flex-col md:flex-row">
+        <!-- Image Section -->
+        <div class="relative hidden w-1/2 flex-col bg-slate-200 dark:bg-slate-800 md:flex">
+            <div class="absolute inset-0 z-0 h-full w-full bg-cover bg-center"
+                style="background-image: url('https://lh3.googleusercontent.com/aida-public/AB6AXuBSNxUnxPNRAaLALb9nk_p4jjbm9wrLe-lZhYOYIllWjHjl4vN7_7xBj-LtFzZRqEjX2LBXEeLkNcJqmO057IEapGyDCLMTuixDjXDH_TVpiQa_sTpVaRlvJXSx0WoigvwILrxKlDZuOhwgOvL-01WjgnTHeQH368-GF2at15eLM6J-k496CZUbZNV5wLHRZGprxGHKHvlwswkpj0WhSe5o7ZvgWQhpOGonVg1QlernYYaD80IE2Be1hXaXlIUk3clgVF5r7_OD__k');">
+                <div class="absolute inset-0 bg-primary/20 mix-blend-multiply"></div>
+                <div class="absolute inset-0 bg-gradient-to-t from-background-dark/80 via-transparent to-transparent">
+                </div>
+            </div>
+            <div class="relative z-10 flex h-full flex-col justify-between p-12 text-white">
+                <div class="flex items-center gap-2" onclick="location.href='index.html'" style="cursor: pointer;">
+                    <div class="flex h-10 w-10 items-center justify-center rounded-lg bg-primary">
+                        <span class="material-symbols-outlined text-white">shopping_bag</span>
+                    </div>
+                    <span class="text-2xl font-black tracking-tight">MiTienda.</span>
+                </div>
+                <div class="max-w-md">
+                    <h2 class="text-4xl font-black leading-tight mb-4">Curando las mejores piezas para tu estilo de
+                        vida.</h2>
+                    <p class="text-lg font-normal text-slate-200">Únete a nuestra comunidad exclusiva y obtén acceso
+                        temprano a nuevas colecciones.</p>
+                </div>
+                <div class="flex items-center gap-4 text-sm font-medium">
+                    <span>© 2024 MiTienda Retail Group</span>
+                </div>
+            </div>
+        </div>
+
+        <!-- Registration Section -->
+        <div class="flex w-full flex-col items-center justify-center p-6 md:w-1/2 md:p-12 lg:p-20">
+            <div class="w-full max-w-md space-y-8">
+                <div class="flex flex-col gap-2">
+                    <h1 class="text-3xl font-black tracking-tight md:text-4xl">Crear Cuenta</h1>
+                    <p class="text-slate-600 dark:text-slate-400">¡Bienvenido! Por favor ingresa tus datos para
+                        registrarte.</p>
+                </div>
+                <form class="flex flex-col gap-5" id="register-form">
+                    <div class="flex flex-col gap-1.5">
+                        <label class="text-sm font-semibold text-slate-700 dark:text-slate-300"
+                            for="nombres">Nombres</label>
+                        <div class="relative">
+                            <span
+                                class="material-symbols-outlined absolute left-4 top-1/2 -translate-y-1/2 text-slate-400 !text-xl pointer-events-none">person</span>
+                            <input
+                                class="w-full rounded-xl border-slate-200 dark:border-slate-700 bg-white dark:bg-slate-900/50 py-3.5 pl-14 pr-4 text-slate-900 dark:text-white placeholder:text-slate-400 focus:border-primary focus:ring-2 focus:ring-primary/20 transition-all"
+                                id="nombres" name="nombres" placeholder="Juan" type="text" required />
+                        </div>
+                    </div>
+                    <div class="flex flex-col gap-1.5">
+                        <label class="text-sm font-semibold text-slate-700 dark:text-slate-300"
+                            for="apellidos">Apellidos</label>
+                        <div class="relative">
+                            <span
+                                class="material-symbols-outlined absolute left-4 top-1/2 -translate-y-1/2 text-slate-400 !text-xl pointer-events-none">person</span>
+                            <input
+                                class="w-full rounded-xl border-slate-200 dark:border-slate-700 bg-white dark:bg-slate-900/50 py-3.5 pl-14 pr-4 text-slate-900 dark:text-white placeholder:text-slate-400 focus:border-primary focus:ring-2 focus:ring-primary/20 transition-all"
+                                id="apellidos" name="apellidos" placeholder="Pérez" type="text" required />
+                        </div>
+                    </div>
+                    <div class="flex flex-col gap-1.5">
+                        <label class="text-sm font-semibold text-slate-700 dark:text-slate-300" for="email">Correo
+                            Electrónico</label>
+                        <div class="relative">
+                            <span
+                                class="material-symbols-outlined absolute left-4 top-1/2 -translate-y-1/2 text-slate-400 !text-xl pointer-events-none">mail</span>
+                            <input
+                                class="w-full rounded-xl border-slate-200 dark:border-slate-700 bg-white dark:bg-slate-900/50 py-3.5 pl-14 pr-4 text-slate-900 dark:text-white placeholder:text-slate-400 focus:border-primary focus:ring-2 focus:ring-primary/20 transition-all"
+                                id="email" name="email" placeholder="juan@ejemplo.com" type="email" required />
+                        </div>
+                    </div>
+                    <div class="flex flex-col gap-1.5">
+                        <label class="text-sm font-semibold text-slate-700 dark:text-slate-300"
+                            for="telefono">Teléfono</label>
+                        <div class="relative">
+                            <span
+                                class="material-symbols-outlined absolute left-4 top-1/2 -translate-y-1/2 text-slate-400 !text-xl pointer-events-none">phone</span>
+                            <input
+                                class="w-full rounded-xl border-slate-200 dark:border-slate-700 bg-white dark:bg-slate-900/50 py-3.5 pl-14 pr-4 text-slate-900 dark:text-white placeholder:text-slate-400 focus:border-primary focus:ring-2 focus:ring-primary/20 transition-all"
+                                id="telefono" name="telefono" placeholder="+57 300 000 0000" type="tel" required />
+                        </div>
+                    </div>
+                    <button
+                        class="w-full rounded-xl bg-primary py-4 text-center text-base font-bold text-white shadow-lg shadow-primary/20 hover:bg-primary/90 focus:outline-none focus:ring-4 focus:ring-primary/30 transition-all active:scale-[0.98]"
+                        type="submit">
+                        Crear Cuenta
+                    </button>
+                    <div id="register-message" class="text-center text-sm mt-2"></div>
+                </form>
+                <p class="text-center text-sm text-slate-600 dark:text-slate-400">
+                    ¿Ya tienes una cuenta?
+                    <a class="font-bold text-primary hover:underline" href="login.html">Inicia sesión aquí</a>
+                </p>
+            </div>
+        </div>
+    </main>
+    <script src="js/api.js"></script>
+    <script src="js/registro.js"></script>
+</body>
+
+</html>

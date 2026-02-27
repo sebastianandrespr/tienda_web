@@ -1,0 +1,147 @@
+<!DOCTYPE html>
+
+<html lang="en"><head>
+<meta charset="utf-8"/>
+<meta content="width=device-width, initial-scale=1.0" name="viewport"/>
+<title>Create Your Account - register_web_v2</title>
+<script src="https://cdn.tailwindcss.com?plugins=forms,container-queries"></script>
+<link href="https://fonts.googleapis.com/css2?family=Public+Sans:wght@300;400;500;600;700;900&amp;display=swap" rel="stylesheet"/>
+<link href="https://fonts.googleapis.com/css2?family=Material+Symbols+Outlined:wght@100..700,0..1&amp;display=swap" rel="stylesheet"/>
+<link href="https://fonts.googleapis.com/css2?family=Material+Symbols+Outlined:wght,FILL@100..700,0..1&amp;display=swap" rel="stylesheet"/>
+<script id="tailwind-config">
+        tailwind.config = {
+            darkMode: "class",
+            theme: {
+                extend: {
+                    colors: {
+                        "primary": "#ec5b13",
+                        "background-light": "#f8f6f6",
+                        "background-dark": "#221610",
+                    },
+                    fontFamily: {
+                        "display": ["Public Sans"]
+                    },
+                    borderRadius: {"DEFAULT": "0.25rem", "lg": "0.5rem", "xl": "0.75rem", "full": "9999px"},
+                },
+            },
+        }
+    </script>
+<style>
+        body {
+            font-family: "Public Sans", sans-serif;
+        }
+    </style>
+</head>
+<body class="bg-background-light dark:bg-background-dark text-slate-900 dark:text-slate-100 min-h-screen">
+<main class="flex min-h-screen w-full flex-col md:flex-row">
+<!-- Image Section (Left side on desktop) -->
+<div class="relative hidden w-1/2 flex-col bg-slate-200 dark:bg-slate-800 md:flex">
+<div class="absolute inset-0 z-0 h-full w-full bg-cover bg-center" data-alt="Modern high-quality retail store interior with aesthetic lighting" style="background-image: url('https://lh3.googleusercontent.com/aida-public/AB6AXuBSNxUnxPNRAaLALb9nk_p4jjbm9wrLe-lZhYOYIllWjHjl4vN7_7xBj-LtFzZRqEjX2LBXEeLkNcJqmO057IEapGyDCLMTuixDjXDH_TVpiQa_sTpVaRlvJXSx0WoigvwILrxKlDZuOhwgOvL-01WjgnTHeQH368-GF2at15eLM6J-k496CZUbZNV5wLHRZGprxGHKHvlwswkpj0WhSe5o7ZvgWQhpOGonVg1QlernYYaD80IE2Be1hXaXlIUk3clgVF5r7_OD__k');">
+<div class="absolute inset-0 bg-primary/20 mix-blend-multiply"></div>
+<div class="absolute inset-0 bg-gradient-to-t from-background-dark/80 via-transparent to-transparent"></div>
+</div>
+<div class="relative z-10 flex h-full flex-col justify-between p-12 text-white">
+<div class="flex items-center gap-2">
+<div class="flex h-10 w-10 items-center justify-center rounded-lg bg-primary">
+<span class="material-symbols-outlined text-white">shopping_bag</span>
+</div>
+<span class="text-2xl font-black tracking-tight">LUXE.</span>
+</div>
+<div class="max-w-md">
+<h2 class="text-4xl font-black leading-tight mb-4">Curating the finest pieces for your lifestyle.</h2>
+<p class="text-lg font-normal text-slate-200">Join our exclusive community and get early access to new drops and seasonal collections.</p>
+</div>
+<div class="flex items-center gap-4 text-sm font-medium">
+<span>© 2024 LUXE Retail Group</span>
+<span class="h-1 w-1 rounded-full bg-white/50"></span>
+<a class="hover:text-primary transition-colors" href="#">Privacy Policy</a>
+</div>
+</div>
+</div>
+<!-- Registration Form Section (Right side) -->
+<div class="flex w-full flex-col items-center justify-center p-6 md:w-1/2 md:p-12 lg:p-20">
+<div class="w-full max-w-md space-y-8">
+<div class="flex flex-col gap-2">
+<div class="flex md:hidden items-center gap-2 mb-4">
+<div class="flex h-8 w-8 items-center justify-center rounded-lg bg-primary">
+<span class="material-symbols-outlined text-white text-sm">shopping_bag</span>
+</div>
+<span class="text-xl font-black tracking-tight">LUXE.</span>
+</div>
+<h1 class="text-3xl font-black tracking-tight md:text-4xl">Create Account</h1>
+<p class="text-slate-600 dark:text-slate-400">Welcome! Please enter your details to register.</p>
+</div>
+<form class="flex flex-col gap-5">
+<!-- Full Name -->
+<div class="flex flex-col gap-1.5">
+<label class="text-sm font-semibold text-slate-700 dark:text-slate-300" for="full_name">Full Name</label>
+<div class="relative">
+<span class="material-symbols-outlined absolute left-4 top-1/2 -translate-y-1/2 text-slate-400 text-xl">person</span>
+<input class="w-full rounded-xl border-slate-200 dark:border-slate-700 bg-white dark:bg-slate-900/50 py-3.5 pl-12 pr-4 text-slate-900 dark:text-white placeholder:text-slate-400 focus:border-primary focus:ring-2 focus:ring-primary/20 transition-all" id="full_name" name="full_name" placeholder="John Doe" type="text"/>
+</div>
+</div>
+<!-- Email -->
+<div class="flex flex-col gap-1.5">
+<label class="text-sm font-semibold text-slate-700 dark:text-slate-300" for="email">Email Address</label>
+<div class="relative">
+<span class="material-symbols-outlined absolute left-4 top-1/2 -translate-y-1/2 text-slate-400 text-xl">mail</span>
+<input class="w-full rounded-xl border-slate-200 dark:border-slate-700 bg-white dark:bg-slate-900/50 py-3.5 pl-12 pr-4 text-slate-900 dark:text-white placeholder:text-slate-400 focus:border-primary focus:ring-2 focus:ring-primary/20 transition-all" id="email" name="email" placeholder="john@example.com" type="email"/>
+</div>
+</div>
+<!-- Password -->
+<div class="flex flex-col gap-1.5">
+<label class="text-sm font-semibold text-slate-700 dark:text-slate-300" for="password">Password</label>
+<div class="relative">
+<span class="material-symbols-outlined absolute left-4 top-1/2 -translate-y-1/2 text-slate-400 text-xl">lock</span>
+<input class="w-full rounded-xl border-slate-200 dark:border-slate-700 bg-white dark:bg-slate-900/50 py-3.5 pl-12 pr-12 text-slate-900 dark:text-white placeholder:text-slate-400 focus:border-primary focus:ring-2 focus:ring-primary/20 transition-all" id="password" name="password" placeholder="••••••••" type="password"/>
+<button class="absolute right-4 top-1/2 -translate-y-1/2 text-slate-400 hover:text-slate-600" type="button">
+<span class="material-symbols-outlined text-xl">visibility</span>
+</button>
+</div>
+</div>
+<!-- Confirm Password -->
+<div class="flex flex-col gap-1.5">
+<label class="text-sm font-semibold text-slate-700 dark:text-slate-300" for="confirm_password">Confirm Password</label>
+<div class="relative">
+<span class="material-symbols-outlined absolute left-4 top-1/2 -translate-y-1/2 text-slate-400 text-xl">lock_reset</span>
+<input class="w-full rounded-xl border-slate-200 dark:border-slate-700 bg-white dark:bg-slate-900/50 py-3.5 pl-12 pr-4 text-slate-900 dark:text-white placeholder:text-slate-400 focus:border-primary focus:ring-2 focus:ring-primary/20 transition-all" id="confirm_password" name="confirm_password" placeholder="••••••••" type="password"/>
+</div>
+</div>
+<!-- Terms checkbox -->
+<div class="flex items-start gap-3 py-2">
+<input class="mt-1 h-5 w-5 rounded border-slate-300 text-primary focus:ring-primary" id="terms" type="checkbox"/>
+<label class="text-sm leading-relaxed text-slate-600 dark:text-slate-400" for="terms">
+                            I agree to the <a class="font-semibold text-primary underline underline-offset-2" href="#">Terms of Service</a> and <a class="font-semibold text-primary underline underline-offset-2" href="#">Privacy Policy</a>.
+                        </label>
+</div>
+<!-- Submit Button -->
+<button class="w-full rounded-xl bg-primary py-4 text-center text-base font-bold text-white shadow-lg shadow-primary/20 hover:bg-primary/90 focus:outline-none focus:ring-4 focus:ring-primary/30 transition-all active:scale-[0.98]" type="submit">
+                        Create Account
+                    </button>
+</form>
+<!-- Footer social links or login -->
+<div class="space-y-6 pt-4">
+<div class="relative flex items-center py-2">
+<div class="flex-grow border-t border-slate-200 dark:border-slate-800"></div>
+<span class="mx-4 flex-shrink text-sm font-medium text-slate-400">Or register with</span>
+<div class="flex-grow border-t border-slate-200 dark:border-slate-800"></div>
+</div>
+<div class="grid grid-cols-2 gap-4">
+<button class="flex items-center justify-center gap-2 rounded-xl border border-slate-200 dark:border-slate-700 bg-white dark:bg-slate-900/50 py-3 font-medium transition-all hover:bg-slate-50 dark:hover:bg-slate-800/50">
+<span class="material-symbols-outlined text-xl">brand_family</span>
+<span>Google</span>
+</button>
+<button class="flex items-center justify-center gap-2 rounded-xl border border-slate-200 dark:border-slate-700 bg-white dark:bg-slate-900/50 py-3 font-medium transition-all hover:bg-slate-50 dark:hover:bg-slate-800/50">
+<span class="material-symbols-outlined text-xl">ios</span>
+<span>Apple</span>
+</button>
+</div>
+<p class="text-center text-sm text-slate-600 dark:text-slate-400">
+                        Already have an account? 
+                        <a class="font-bold text-primary hover:underline" href="#">Log in here</a>
+</p>
+</div>
+</div>
+</div>
+</main>
+</body></html>

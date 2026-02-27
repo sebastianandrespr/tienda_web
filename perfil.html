@@ -1,0 +1,164 @@
+<!DOCTYPE html>
+<html lang="es">
+
+<head>
+    <meta charset="utf-8" />
+    <meta content="width=device-width, initial-scale=1.0" name="viewport" />
+    <title>Mi Perfil - MiTienda</title>
+    <script src="https://cdn.tailwindcss.com?plugins=forms,container-queries"></script>
+    <link href="https://fonts.googleapis.com/css2?family=Public+Sans:wght@300;400;500;600;700;800;900&display=swap"
+        rel="stylesheet" />
+    <link href="https://fonts.googleapis.com/css2?family=Material+Symbols+Outlined:wght,FILL@100..700,0..1&display=swap"
+        rel="stylesheet" />
+    <link rel="stylesheet" href="css/styles.css">
+    <script id="tailwind-config">
+        tailwind.config = {
+            darkMode: "class",
+            theme: {
+                extend: {
+                    colors: {
+                        "primary": "#ec5b13",
+                        "background-light": "#f8f6f6",
+                        "background-dark": "#221610",
+                    },
+                    fontFamily: {
+                        "display": ["Public Sans"]
+                    },
+                    borderRadius: { "DEFAULT": "0.25rem", "lg": "0.5rem", "xl": "0.75rem", "full": "9999px" },
+                },
+            },
+        }
+    </script>
+</head>
+
+<body class="bg-background-light dark:bg-background-dark font-display text-slate-900 dark:text-slate-100 antialiased">
+    <div class="flex h-screen overflow-hidden">
+        <!-- Sidebar -->
+        <aside
+            class="w-64 border-r border-slate-200 dark:border-slate-800 bg-white dark:bg-background-dark flex flex-col">
+            <div class="p-6 flex items-center gap-3">
+                <div class="bg-primary rounded-xl p-2 flex items-center justify-center text-white"
+                    onclick="location.href='index.html'" style="cursor: pointer;">
+                    <span class="material-symbols-outlined">shopping_bag</span>
+                </div>
+                <div>
+                    <h1 class="font-bold text-lg leading-tight">MiTienda</h1>
+                    <p class="text-xs text-slate-500 dark:text-slate-400">Online Store</p>
+                </div>
+            </div>
+            <nav class="flex-1 px-4 space-y-1">
+                <a class="flex items-center gap-3 px-3 py-2 text-slate-600 dark:text-slate-400 hover:bg-slate-100 dark:hover:bg-slate-800 rounded-xl transition-colors"
+                    href="index.html">
+                    <span class="material-symbols-outlined">home</span>
+                    <span class="text-sm font-medium">Toda la tienda</span>
+                </a>
+
+                <div class="pt-4 border-t border-slate-200 dark:border-slate-800 mt-4">
+                    <a class="flex items-center gap-3 px-3 py-2 bg-primary/10 text-primary rounded-xl transition-colors"
+                        href="perfil.html">
+                        <span class="material-symbols-outlined">person</span>
+                        <span class="text-sm font-semibold">Mi Perfil</span>
+                    </a>
+                    <a class="flex items-center gap-3 px-3 py-2 text-slate-600 dark:text-slate-400 hover:bg-slate-100 dark:hover:bg-slate-800 rounded-xl transition-colors"
+                        href="carrito.html">
+                        <span class="material-symbols-outlined">shopping_cart</span>
+                        <span class="text-sm font-medium">Carrito</span>
+                    </a>
+                    <button id="logout-btn"
+                        class="w-full flex items-center gap-3 px-3 py-2 text-rose-500 hover:bg-rose-50 dark:hover:bg-rose-900/20 rounded-xl transition-colors">
+                        <span class="material-symbols-outlined">logout</span>
+                        <span class="text-sm font-medium">Cerrar Sesión</span>
+                    </button>
+                </div>
+            </nav>
+        </aside>
+
+        <!-- Main Content -->
+        <main class="flex-1 flex flex-col overflow-hidden">
+            <header
+                class="h-16 border-b border-slate-200 dark:border-slate-800 bg-white dark:bg-background-dark px-8 flex items-center justify-between">
+                <h2 class="text-xl font-bold">Configuración de Perfil</h2>
+                <div class="flex items-center gap-4">
+                    <button
+                        class="p-2 text-slate-500 dark:text-slate-400 hover:bg-slate-100 dark:hover:bg-slate-800 rounded-full transition-colors"
+                        onclick="document.documentElement.classList.toggle('dark')">
+                        <span class="material-symbols-outlined">dark_mode</span>
+                    </button>
+                </div>
+            </header>
+
+            <div class="flex-1 overflow-y-auto p-8">
+                <div class="max-w-2xl mx-auto">
+                    <div
+                        class="bg-white dark:bg-slate-900/40 rounded-2xl border border-slate-200 dark:border-slate-800 p-8 shadow-sm">
+                        <form id="profile-form" class="space-y-6">
+                            <div class="grid grid-cols-1 md:grid-cols-2 gap-6">
+                                <div class="space-y-1.5">
+                                    <label class="text-sm font-semibold text-slate-700 dark:text-slate-300"
+                                        for="nombres">Nombres</label>
+                                    <input
+                                        class="w-full rounded-xl border-slate-200 dark:border-slate-700 bg-white dark:bg-slate-900/50 py-3 px-4 text-slate-900 dark:text-white focus:border-primary focus:ring-2 focus:ring-primary/20 transition-all"
+                                        id="nombres" name="nombres" type="text" required />
+                                </div>
+                                <div class="space-y-1.5">
+                                    <label class="text-sm font-semibold text-slate-700 dark:text-slate-300"
+                                        for="apellidos">Apellidos</label>
+                                    <input
+                                        class="w-full rounded-xl border-slate-200 dark:border-slate-700 bg-white dark:bg-slate-900/50 py-3 px-4 text-slate-900 dark:text-white focus:border-primary focus:ring-2 focus:ring-primary/20 transition-all"
+                                        id="apellidos" name="apellidos" type="text" required />
+                                </div>
+                            </div>
+
+                            <div class="space-y-1.5">
+                                <label class="text-sm font-semibold text-slate-700 dark:text-slate-300"
+                                    for="email">Correo Electrónico</label>
+                                <input
+                                    class="w-full rounded-xl border-slate-200 dark:border-slate-700 bg-slate-50 dark:bg-slate-800 py-3 px-4 text-slate-500 dark:text-slate-400 cursor-not-allowed"
+                                    id="email" name="email" type="email" readonly />
+                            </div>
+
+                            <div class="grid grid-cols-1 md:grid-cols-2 gap-6">
+                                <div class="space-y-1.5">
+                                    <label class="text-sm font-semibold text-slate-700 dark:text-slate-300"
+                                        for="telefono">Teléfono</label>
+                                    <input
+                                        class="w-full rounded-xl border-slate-200 dark:border-slate-700 bg-white dark:bg-slate-900/50 py-3 px-4 text-slate-900 dark:text-white focus:border-primary focus:ring-2 focus:ring-primary/20 transition-all"
+                                        id="telefono" name="telefono" type="tel" required />
+                                </div>
+                                <div class="space-y-1.5">
+                                    <label class="text-sm font-semibold text-slate-700 dark:text-slate-300"
+                                        for="documento">Documento de Identidad</label>
+                                    <input
+                                        class="w-full rounded-xl border-slate-200 dark:border-slate-700 bg-white dark:bg-slate-900/50 py-3 px-4 text-slate-900 dark:text-white focus:border-primary focus:ring-2 focus:ring-primary/20 transition-all"
+                                        id="documento" name="documento" type="text" placeholder="Ej: 12345678" />
+                                </div>
+                            </div>
+
+                            <div class="space-y-1.5">
+                                <label class="text-sm font-semibold text-slate-700 dark:text-slate-300"
+                                    for="direccion">Dirección de Envío</label>
+                                <textarea
+                                    class="w-full rounded-xl border-slate-200 dark:border-slate-700 bg-white dark:bg-slate-900/50 py-3 px-4 text-slate-900 dark:text-white focus:border-primary focus:ring-2 focus:ring-primary/20 transition-all min-h-[100px]"
+                                    id="direccion" name="direccion" placeholder="Calle, Número, Ciudad..."></textarea>
+                            </div>
+
+                            <div class="pt-4">
+                                <button
+                                    class="w-full rounded-xl bg-primary py-4 text-center text-base font-bold text-white shadow-lg shadow-primary/20 hover:bg-primary/90 focus:outline-none focus:ring-4 focus:ring-primary/30 transition-all active:scale-[0.98]"
+                                    type="submit">
+                                    Guardar Cambios
+                                </button>
+                                <div id="profile-message" class="text-center text-sm mt-4"></div>
+                            </div>
+                        </form>
+                    </div>
+                </div>
+            </div>
+        </main>
+    </div>
+
+    <script src="js/api.js?v=5"></script>
+    <script src="js/perfil.js?v=5"></script>
+</body>
+
+</html>
