@@ -11,6 +11,7 @@
     <link href="https://fonts.googleapis.com/css2?family=Material+Symbols+Outlined:wght,FILL@100..700,0..1&display=swap"
         rel="stylesheet" />
     <link rel="stylesheet" href="css/styles.css">
+    <script src="js/theme.js"></script>
     <script id="tailwind-config">
         tailwind.config = {
             darkMode: "class",
@@ -54,18 +55,23 @@
                 </a>
 
                 <div class="pt-4 border-t border-slate-200 dark:border-slate-800 mt-4">
-                    <a class="flex items-center gap-3 px-3 py-2 bg-primary/10 text-primary rounded-xl transition-colors"
-                        href="perfil.html">
+                    <button onclick="showSection('profile')" id="btn-profile"
+                        class="w-full flex items-center gap-3 px-3 py-2 bg-primary/10 text-primary rounded-xl transition-colors font-semibold">
                         <span class="material-symbols-outlined">person</span>
-                        <span class="text-sm font-semibold">Mi Perfil</span>
-                    </a>
-                    <a class="flex items-center gap-3 px-3 py-2 text-slate-600 dark:text-slate-400 hover:bg-slate-100 dark:hover:bg-slate-800 rounded-xl transition-colors"
+                        <span class="text-sm">Mi Perfil</span>
+                    </button>
+                    <button onclick="showSection('wishlist')" id="btn-wishlist"
+                        class="w-full flex items-center gap-3 px-3 py-2 text-slate-600 dark:text-slate-400 hover:bg-slate-100 dark:hover:bg-slate-800 rounded-xl transition-colors mt-1">
+                        <span class="material-symbols-outlined text-rose-500">favorite</span>
+                        <span class="text-sm font-medium">Mi Wishlist</span>
+                    </button>
+                    <a class="flex items-center gap-3 px-3 py-2 text-slate-600 dark:text-slate-400 hover:bg-slate-100 dark:hover:bg-slate-800 rounded-xl transition-colors mt-1"
                         href="carrito.html">
                         <span class="material-symbols-outlined">shopping_cart</span>
                         <span class="text-sm font-medium">Carrito</span>
                     </a>
                     <button id="logout-btn"
-                        class="w-full flex items-center gap-3 px-3 py-2 text-rose-500 hover:bg-rose-50 dark:hover:bg-rose-900/20 rounded-xl transition-colors">
+                        class="w-full flex items-center gap-3 px-3 py-2 text-rose-500 hover:bg-rose-50 dark:hover:bg-rose-900/20 rounded-xl transition-colors mt-4">
                         <span class="material-symbols-outlined">logout</span>
                         <span class="text-sm font-medium">Cerrar Sesión</span>
                     </button>
@@ -81,14 +87,14 @@
                 <div class="flex items-center gap-4">
                     <button
                         class="p-2 text-slate-500 dark:text-slate-400 hover:bg-slate-100 dark:hover:bg-slate-800 rounded-full transition-colors"
-                        onclick="document.documentElement.classList.toggle('dark')">
-                        <span class="material-symbols-outlined">dark_mode</span>
+                        onclick="toggleTheme()">
+                        <span class="material-symbols-outlined theme-toggle-icon">dark_mode</span>
                     </button>
                 </div>
             </header>
 
-            <div class="flex-1 overflow-y-auto p-8">
-                <div class="max-w-2xl mx-auto">
+            <div class="flex-1 overflow-y-auto p-8" id="section-container">
+                <div class="max-w-2xl mx-auto" id="profile-section">
                     <div
                         class="bg-white dark:bg-slate-900/40 rounded-2xl border border-slate-200 dark:border-slate-800 p-8 shadow-sm">
                         <form id="profile-form" class="space-y-6">
@@ -151,14 +157,18 @@
                                 <div id="profile-message" class="text-center text-sm mt-4"></div>
                             </div>
                         </form>
-                    </div>
+                    </div> <!-- closes bg-white -->
+                </div> <!-- closes profile-section -->
+
+                <div class="max-w-4xl mx-auto hidden" id="wishlist-section">
+                    <!-- Wishlist content will be rendered here -->
                 </div>
-            </div>
+            </div> <!-- closes section-container -->
         </main>
     </div>
 
-    <script src="js/api.js?v=5"></script>
-    <script src="js/perfil.js?v=5"></script>
+    <script src="js/api.js?v=10"></script>
+    <script src="js/perfil.js?v=10"></script>
 </body>
 
 </html>

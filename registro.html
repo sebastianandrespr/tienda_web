@@ -11,6 +11,7 @@
     <link href="https://fonts.googleapis.com/css2?family=Material+Symbols+Outlined:wght,FILL@100..700,0..1&display=swap"
         rel="stylesheet" />
     <link rel="stylesheet" href="css/styles.css">
+    <script src="js/theme.js"></script>
     <script id="tailwind-config">
         tailwind.config = {
             darkMode: "class",
@@ -61,7 +62,11 @@
         </div>
 
         <!-- Registration Section -->
-        <div class="flex w-full flex-col items-center justify-center p-6 md:w-1/2 md:p-12 lg:p-20">
+        <div class="flex w-full flex-col items-center justify-center p-6 md:w-1/2 md:p-12 lg:p-20 relative">
+            <button onclick="toggleTheme()"
+                class="absolute top-6 right-6 p-2 text-slate-500 dark:text-slate-400 hover:bg-slate-100 dark:hover:bg-slate-800 rounded-full transition-colors">
+                <span class="material-symbols-outlined theme-toggle-icon">dark_mode</span>
+            </button>
             <div class="w-full max-w-md space-y-8">
                 <div class="flex flex-col gap-2">
                     <h1 class="text-3xl font-black tracking-tight md:text-4xl">Crear Cuenta</h1>

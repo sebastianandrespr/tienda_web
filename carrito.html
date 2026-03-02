@@ -4,38 +4,56 @@
 <head>
     <meta charset="utf-8" />
     <meta content="width=device-width, initial-scale=1.0" name="viewport" />
-    <title>Tu Carrito - ShopModern</title>
+    <title>Tu Carrito - MiTienda</title>
     <script src="https://cdn.tailwindcss.com?plugins=forms,container-queries"></script>
     <link href="https://fonts.googleapis.com/css2?family=Public+Sans:wght@300;400;500;600;700;800;900&display=swap"
         rel="stylesheet" />
     <link href="https://fonts.googleapis.com/css2?family=Material+Symbols+Outlined:wght,FILL@100..700,0..1&display=swap"
         rel="stylesheet" />
     <link rel="stylesheet" href="css/styles.css">
+    <script src="js/theme.js"></script>
+    <script id="tailwind-config">
+        tailwind.config = {
+            darkMode: "class",
+            theme: {
+                extend: {
+                    colors: {
+                        "primary": "#ec5b13",
+                        "background-light": "#f8f6f6",
+                        "background-dark": "#221610",
+                    },
+                    fontFamily: { "display": ["Public Sans"] },
+                    borderRadius: { "DEFAULT": "0.25rem", "lg": "0.5rem", "xl": "0.75rem", "full": "9999px" },
+                },
+            },
+        }
+    </script>
 </head>
 
 <body class="bg-background-light dark:bg-background-dark font-display text-slate-900 dark:text-slate-100 antialiased">
     <div class="relative flex min-h-screen flex-col overflow-x-hidden">
+        <!-- Modern Header -->
         <header
-            class="sticky top-0 z-50 w-full border-b border-slate-200 dark:border-slate-800 bg-background-light/80 dark:bg-background-dark/80 backdrop-blur-md">
-            <div class="mx-auto max-w-7xl px-4 sm:px-6 lg:px-8">
-                <div class="flex h-16 items-center justify-between gap-8">
-                    <div class="flex items-center gap-2" onclick="location.href='index.html'" style="cursor: pointer;">
-                        <div class="flex h-8 w-8 items-center justify-center rounded-lg bg-primary text-white">
-                            <span class="material-symbols-outlined text-xl">shopping_bag</span>
-                        </div>
-                        <h2 class="text-xl font-bold tracking-tight text-slate-900 dark:text-white">ShopModern</h2>
-                    </div>
-                    <nav class="flex items-center gap-4 lg:gap-8">
-                        <div class="hidden lg:flex items-center gap-6">
-                            <a class="text-sm font-medium hover:text-primary transition-colors"
-                                href="index.html">Inicio</a>
-                            <a class="text-sm font-medium hover:text-primary transition-colors" href="#">Categorías</a>
-                        </div>
+            class="sticky top-0 z-50 w-full border-b border-slate-200 dark:border-slate-800 bg-white/80 dark:bg-background-dark/80 backdrop-blur-md">
+            <div class="mx-auto max-w-7xl px-6 lg:px-12">
+                <div class="flex h-20 items-center justify-between">
+                    <div class="flex items-center gap-3 cursor-pointer group" onclick="location.href='index.html'">
                         <div
-                            class="flex items-center gap-2 border-l border-slate-200 dark:border-slate-800 pl-4 lg:pl-8">
-                            <button
-                                class="relative rounded-xl p-2 hover:bg-slate-100 dark:hover:bg-slate-800 transition-colors">
-                                <span class="material-symbols-outlined">person</span>
+                            class="bg-primary rounded-xl p-2.5 text-white shadow-lg shadow-primary/30 group-hover:scale-110 transition-transform">
+                            <span class="material-symbols-outlined text-2xl">shopping_bag</span>
+                        </div>
+                        <h1 class="text-2xl font-black tracking-tighter">MiTienda</h1>
+                    </div>
+
+                    <nav class="hidden md:flex items-center gap-8">
+                        <a href="index.html" class="text-sm font-bold hover:text-primary transition-colors">Seguir
+                            Comprando</a>
+                        <div class="h-6 w-[1px] bg-slate-200 dark:bg-slate-800"></div>
+                        <div id="user-header" class="flex items-center gap-2">
+                            <!-- Theme toggle next to user -->
+                            <button onclick="toggleTheme()"
+                                class="p-2 text-slate-500 dark:text-slate-400 hover:bg-slate-100 dark:hover:bg-slate-800 rounded-full transition-colors">
+                                <span class="material-symbols-outlined theme-toggle-icon">dark_mode</span>
                             </button>
                         </div>
                     </nav>
@@ -43,67 +61,111 @@
             </div>
         </header>
 
-        <main class="mx-auto w-full max-w-7xl flex-1 px-4 py-8 sm:px-6 lg:px-8">
-            <nav class="mb-6 flex items-center gap-2 text-sm text-slate-500 dark:text-slate-400">
-                <a class="hover:text-primary" href="index.html">Inicio</a>
-                <span class="material-symbols-outlined text-xs">chevron_right</span>
-                <span class="text-slate-900 dark:text-white font-medium">Carrito de Compras</span>
-            </nav>
-            <h1 class="text-3xl font-extrabold tracking-tight text-slate-900 dark:text-white mb-8">Tu Carrito</h1>
+        <main class="flex-1 mx-auto w-full max-w-7xl px-6 py-12 lg:px-12 lg:py-16">
+            <div class="flex flex-col gap-2 mb-10">
+                <div class="flex items-center gap-2 text-xs font-bold uppercase tracking-widest text-slate-400">
+                    <a href="index.html" class="hover:text-primary transition-colors">Tienda</a>
+                    <span class="material-symbols-outlined text-[10px]">chevron_right</span>
+                    <span class="text-primary">Tu Carrito</span>
+                </div>
+                <h2 class="text-4xl font-extrabold tracking-tight">Carrito de Compras</h2>
+            </div>
 
-            <div class="grid grid-cols-1 gap-x-8 gap-y-10 lg:grid-cols-12" id="cart-content">
-                <!-- Cart Items Section -->
-                <div class="lg:col-span-8">
+            <div id="cart-container" class="grid grid-cols-1 gap-12 lg:grid-cols-12 items-start transition-all"
+                style="display: none;">
+                <!-- Product List -->
+                <div class="lg:col-span-8 flex flex-col gap-6" id="cart-items-wrapper">
                     <div
-                        class="flow-root rounded-xl border border-slate-200 dark:border-slate-800 bg-white dark:bg-slate-900/50">
-                        <ul class="-my-6 divide-y divide-slate-200 dark:divide-slate-800 px-6" id="cart-items-list">
-                            <!-- Items via carrito.js -->
+                        class="bg-white dark:bg-slate-900/40 rounded-3xl border border-slate-200 dark:border-slate-800 shadow-sm overflow-hidden">
+                        <ul class="divide-y divide-slate-100 dark:divide-slate-800/60" id="cart-items-list">
+                            <!-- Populated by carrito.js -->
                         </ul>
                     </div>
+
+                    <button onclick="location.href='index.html'"
+                        class="flex items-center gap-2 text-sm font-bold text-slate-400 hover:text-primary transition-all p-2 w-fit">
+                        <span class="material-symbols-outlined text-sm">arrow_back</span>
+                        Añadir más productos
+                    </button>
                 </div>
 
-                <!-- Order Summary Section -->
-                <div class="lg:col-span-4">
+                <!-- Summary Sidebar -->
+                <div class="lg:col-span-4 sticky top-28">
                     <div
-                        class="rounded-xl border border-slate-200 dark:border-slate-800 bg-white dark:bg-slate-900/50 p-6 shadow-sm">
-                        <h2 class="text-lg font-bold text-slate-900 dark:text-white">Resumen del Pedido</h2>
-                        <div class="mt-6 space-y-4">
-                            <div class="flex items-center justify-between">
-                                <p class="text-sm text-slate-600 dark:text-slate-400">Subtotal</p>
-                                <p class="text-sm font-semibold text-slate-900 dark:text-white" id="summary-subtotal">
-                                    $0.00</p>
+                        class="bg-white dark:bg-slate-900/60 rounded-3xl border border-slate-200 dark:border-slate-800 p-8 shadow-xl shadow-slate-200/50 dark:shadow-none space-y-8">
+                        <h3 class="text-xl font-bold">Resumen del Pedido</h3>
+
+                        <div class="space-y-4">
+                            <div class="flex justify-between text-sm">
+                                <span class="text-slate-500 font-medium">Subtotal</span>
+                                <span class="font-bold" id="summary-subtotal">$0.00</span>
+                            </div>
+                            <div class="flex justify-between text-sm">
+                                <span class="text-slate-500 font-medium">Envío</span>
+                                <span class="font-bold text-emerald-500">Gratis</span>
                             </div>
                             <div
-                                class="flex items-center justify-between border-t border-slate-100 dark:border-slate-800 pt-4">
-                                <p class="text-sm text-slate-600 dark:text-slate-400">Envío Estimado</p>
-                                <p class="text-sm font-semibold text-slate-900 dark:text-white">$5.00</p>
-                            </div>
-                            <div
-                                class="flex items-center justify-between border-t border-slate-200 dark:border-slate-700 pt-4">
-                                <p class="text-base font-bold text-slate-900 dark:text-white">Total</p>
-                                <p class="text-base font-bold text-slate-900 dark:text-white" id="summary-total">$0.00
-                                </p>
+                                class="pt-4 border-t border-slate-100 dark:border-slate-800 flex justify-between items-end">
+                                <div class="flex flex-col">
+                                    <span class="text-xs font-bold uppercase tracking-widest text-slate-400">Total a
+                                        pagar</span>
+                                    <span class="text-3xl font-black text-primary" id="summary-total">$0.00</span>
+                                </div>
                             </div>
                         </div>
-                        <div class="mt-8">
-                            <button
-                                class="w-full flex items-center justify-center rounded-xl bg-primary px-6 py-4 text-base font-bold text-white shadow-lg shadow-primary/20 hover:bg-primary/90 transition-all active:scale-[0.98]">
-                                Finalizar Compra
+
+                        <div class="flex flex-col gap-4">
+                            <button onclick="checkout()"
+                                class="w-full bg-slate-900 dark:bg-white text-white dark:text-slate-900 rounded-2xl py-5 font-black text-lg hover:bg-primary dark:hover:bg-primary dark:hover:text-white transition-all shadow-xl shadow-primary/20 active:scale-[0.98] flex items-center justify-center gap-3">
+                                <span class="material-symbols-outlined">payments</span>
+                                Finalizar Pedido
                             </button>
+
+                            <div class="flex items-center justify-center gap-4 py-2 opacity-40">
+                                <img src="https://upload.wikimedia.org/wikipedia/commons/5/5e/Visa_Inc._logo.svg"
+                                    class="h-4 grayscale invert dark:invert-0" alt="Visa">
+                                <img src="https://upload.wikimedia.org/wikipedia/commons/2/2a/Mastercard-logo.svg"
+                                    class="h-6 grayscale invert dark:invert-0" alt="Mastercard">
+                                <img src="https://upload.wikimedia.org/wikipedia/commons/b/b5/PayPal.svg"
+                                    class="h-4 grayscale invert dark:invert-0" alt="Paypal">
+                            </div>
+                        </div>
+                    </div>
+
+                    <div
+                        class="mt-8 bg-emerald-50 dark:bg-emerald-900/10 rounded-2xl p-4 border border-emerald-100 dark:border-emerald-800/30 flex items-start gap-3">
+                        <span class="material-symbols-outlined text-emerald-500">verified_user</span>
+                        <div class="flex flex-col gap-0.5">
+                            <p class="text-xs font-bold text-emerald-700 dark:text-emerald-400">Compra Segura</p>
+                            <p class="text-[10px] text-emerald-600/70 dark:text-emerald-500/60">Tus datos están
+                                protegidos con encriptación SSL de grado bancario.</p>
                         </div>
                     </div>
                 </div>
             </div>
 
-            <div id="empty-cart-message" style="display: none;" class="text-center py-20">
-                <span class="material-symbols-outlined text-6xl text-slate-300">shopping_cart_off</span>
-                <h2 class="text-xl font-bold mt-4">Tu carrito está vacío</h2>
-                <a href="index.html" class="inline-block mt-4 btn-primary">Volver a la tienda</a>
+            <!-- Empty cart state -->
+            <div id="empty-cart-message"
+                class="hidden flex flex-col items-center justify-center py-24 text-center space-y-6">
+                <div
+                    class="size-24 bg-slate-100 dark:bg-slate-800 rounded-full flex items-center justify-center text-slate-300">
+                    <span class="material-symbols-outlined text-5xl">shopping_cart_off</span>
+                </div>
+                <div class="space-y-2">
+                    <h3 class="text-2xl font-extrabold">Tu carrito está vacío</h3>
+                    <p class="text-slate-500 max-w-xs mx-auto">Parece que aún no has añadido nada a tu bolsa de compras.
+                        ¡Explora nuestra tienda!</p>
+                </div>
+                <a href="index.html"
+                    class="bg-primary text-white rounded-2xl px-8 py-4 font-bold hover:bg-primary/90 transition-all shadow-lg shadow-primary/20">
+                    Ver Catálogo
+                </a>
             </div>
         </main>
     </div>
 
-    <script src="js/carrito.js"></script>
+    <script src="js/api.js?v=7"></script>
+    <script src="js/carrito.js?v=7"></script>
 </body>
 
 </html>

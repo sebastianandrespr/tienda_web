@@ -4,25 +4,25 @@ document.addEventListener('DOMContentLoaded', () => {
         loginForm.addEventListener('submit', async (e) => {
             e.preventDefault();
             const messageEl = document.getElementById('login-message');
-            messageEl.innerText = 'Iniciando sesión...';
-            messageEl.className = 'text-center text-sm mt-2 text-slate-500';
+            messageEl.innerText = 'Verificando datos...';
+            messageEl.className = 'text-center text-sm mt-2 text-slate-500 font-bold animate-pulse';
 
             const formData = new FormData(e.target);
             const email = formData.get('email');
-            const phone = formData.get('password'); // Usando el campo password para el teléfono como solicitaste
+            const phone = formData.get('password'); // Password field is phone for now
 
             try {
                 const user = await api.loginCustomer(email, phone);
-                messageEl.innerText = `¡Bienvenido, ${user.nombres}!`;
-                messageEl.className = 'text-center text-sm mt-2 text-emerald-500 font-bold';
+                showToast(`¡Bienvenido de nuevo, ${user.nombres}!`, 'success');
 
-                // Guardar sesión simple
+                // Save session
                 localStorage.setItem('user', JSON.stringify(user));
 
                 setTimeout(() => {
                     window.location.href = 'index.html';
                 }, 1500);
             } catch (error) {
+                showToast('Credenciales incorrectas', 'error');
                 messageEl.innerText = 'Error: ' + error.message;
                 messageEl.className = 'text-center text-sm mt-2 text-rose-500 font-bold';
             }

@@ -1,0 +1,131 @@
+<!DOCTYPE html>
+<html lang="es">
+
+<head>
+    <meta charset="utf-8" />
+    <meta content="width=device-width, initial-scale=1.0" name="viewport" />
+    <title>Administración - MiTienda</title>
+    <script src="https://cdn.tailwindcss.com?plugins=forms,container-queries"></script>
+    <link href="https://fonts.googleapis.com/css2?family=Public+Sans:wght@300;400;500;600;700;800;900&display=swap"
+        rel="stylesheet" />
+    <link href="https://fonts.googleapis.com/css2?family=Material+Symbols+Outlined:wght,FILL@100..700,0..1&display=swap"
+        rel="stylesheet" />
+    <link rel="stylesheet" href="css/styles.css">
+    <script src="js/theme.js"></script>
+    <script id="tailwind-config">
+        tailwind.config = {
+            darkMode: "class",
+            theme: {
+                extend: {
+                    colors: {
+                        "primary": "#ec5b13",
+                        "background-light": "#f8f6f6",
+                        "background-dark": "#221610",
+                    },
+                    fontFamily: { "display": ["Public Sans"] },
+                    borderRadius: { "DEFAULT": "0.25rem", "lg": "0.5rem", "xl": "0.75rem", "full": "9999px" },
+                },
+            },
+        }
+    </script>
+</head>
+
+<body
+    class="bg-background-light dark:bg-background-dark font-display text-slate-900 dark:text-slate-100 antialiased overflow-hidden">
+    <div class="flex h-screen overflow-hidden">
+        <!-- Admin Sidebar -->
+        <aside
+            class="w-64 border-r border-slate-200 dark:border-slate-800 bg-white dark:bg-background-dark flex flex-col">
+            <div class="p-6 flex items-center gap-3">
+                <div class="bg-primary rounded-xl p-2 flex items-center justify-center text-white"
+                    onclick="location.href='index.html'" style="cursor: pointer;">
+                    <span class="material-symbols-outlined">admin_panel_settings</span>
+                </div>
+                <div>
+                    <h1 class="font-bold text-lg leading-tight">AdminPanel</h1>
+                    <p class="text-xs text-slate-500 dark:text-slate-400">Panel de Control</p>
+                </div>
+            </div>
+            <nav class="flex-1 px-4 space-y-1">
+                <div class="pt-2 pb-2">
+                    <p class="px-3 text-[10px] font-bold uppercase tracking-widest text-slate-400 dark:text-slate-500">
+                        Gestión</p>
+                </div>
+                <button onclick="showSection('users')" id="btn-users"
+                    class="w-full flex items-center gap-3 px-3 py-2 text-slate-600 dark:text-slate-400 hover:bg-slate-100 dark:hover:bg-slate-800 rounded-xl transition-all">
+                    <span class="material-symbols-outlined">group</span>
+                    <span class="text-sm font-medium">Clientes</span>
+                </button>
+                <button onclick="showSection('sales')" id="btn-sales"
+                    class="w-full flex items-center gap-3 px-3 py-2 text-slate-600 dark:text-slate-400 hover:bg-slate-100 dark:hover:bg-slate-800 rounded-xl transition-all">
+                    <span class="material-symbols-outlined">receipt_long</span>
+                    <span class="text-sm font-medium">Ventas</span>
+                </button>
+                <button onclick="showSection('inventory')" id="btn-inventory"
+                    class="w-full flex items-center gap-3 px-3 py-2 text-slate-600 dark:text-slate-400 hover:bg-slate-100 dark:hover:bg-slate-800 rounded-xl transition-all">
+                    <span class="material-symbols-outlined">inventory_2</span>
+                    <span class="text-sm font-medium">Inventario</span>
+                </button>
+                <div class="pt-4 pb-2">
+                    <p class="px-3 text-[10px] font-bold uppercase tracking-widest text-slate-400 dark:text-slate-500">
+                        Inventario</p>
+                </div>
+                <button onclick="showSection('add-product')" id="btn-add-product"
+                    class="w-full flex items-center gap-3 px-3 py-2 text-slate-600 dark:text-slate-400 hover:bg-slate-100 dark:hover:bg-slate-800 rounded-xl transition-all">
+                    <span class="material-symbols-outlined">add_box</span>
+                    <span class="text-sm font-medium">Agregar Producto</span>
+                </button>
+                <div class="pt-4 border-t border-slate-200 dark:border-slate-800 mt-auto mb-4">
+                    <a class="flex items-center gap-3 px-3 py-2 text-slate-600 dark:text-slate-400 hover:bg-slate-100 dark:hover:bg-slate-800 rounded-xl transition-colors"
+                        href="index.html">
+                        <span class="material-symbols-outlined">storefront</span>
+                        <span class="text-sm font-medium">Ir a la Tienda</span>
+                    </a>
+                </div>
+            </nav>
+        </aside>
+
+        <!-- Main Content -->
+        <main class="flex-1 flex flex-col overflow-hidden bg-slate-50 dark:bg-slate-900/50">
+            <header
+                class="h-16 border-b border-slate-200 dark:border-slate-800 bg-white dark:bg-background-dark px-8 flex items-center justify-between shadow-sm">
+                <h2 class="text-xl font-bold" id="section-title">Clientes</h2>
+                <div class="flex items-center gap-4">
+                    <button
+                        class="p-2 text-slate-500 dark:text-slate-400 hover:bg-slate-100 dark:hover:bg-slate-800 rounded-full transition-colors"
+                        onclick="toggleTheme()">
+                        <span class="material-symbols-outlined theme-toggle-icon">dark_mode</span>
+                    </button>
+                    <div id="admin-user"
+                        class="flex items-center gap-2 pl-4 border-l border-slate-200 dark:border-slate-800">
+                        <div class="text-right">
+                            <p class="text-xs font-bold" id="admin-name">Administrador</p>
+                            <p class="text-[10px] text-slate-500">Super User</p>
+                        </div>
+                        <div
+                            class="size-8 rounded-full bg-slate-200 dark:bg-slate-700 flex items-center justify-center text-slate-500">
+                            A</div>
+                    </div>
+                </div>
+            </header>
+
+            <div class="flex-1 overflow-y-auto p-8">
+                <!-- Data Display Section -->
+                <div id="content-container" class="max-w-6xl mx-auto space-y-6">
+                    <!-- Loaded dynamically via admin.js -->
+                    <div class="animate-pulse flex flex-col gap-4">
+                        <div class="h-12 bg-slate-200 dark:bg-slate-800 rounded-xl"></div>
+                        <div class="h-64 bg-slate-200 dark:bg-slate-800 rounded-xl"></div>
+                    </div>
+                </div>
+            </div>
+        </main>
+    </div>
+
+    <!-- Modals or extra templates can go here -->
+
+    <script src="js/api.js?v=6"></script>
+    <script src="js/admin.js?v=6"></script>
+</body>
+
+</html>
