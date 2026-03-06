@@ -218,6 +218,70 @@ async function removeFromWishlistApi(wishlistId) {
     }
 }
 
+async function createSale(saleData) {
+    try {
+        const response = await fetch(`${SUPABASE_URL}/rest/v1/venta`, {
+            method: 'POST',
+            headers: {
+                ...headers,
+                'Prefer': 'return=representation'
+            },
+            body: JSON.stringify(saleData)
+        });
+        if (!response.ok) {
+            const error = await response.json();
+            throw new Error(error.message || 'Error al crear la venta');
+        }
+        const data = await response.json();
+        return data[0];
+    } catch (error) {
+        console.error('Create Sale Error:', error);
+        throw error;
+    }
+}
+
+async function createSaleDetail(detailsData) {
+    try {
+        const response = await fetch(`${SUPABASE_URL}/rest/v1/detalle_venta`, {
+            method: 'POST',
+            headers: {
+                ...headers,
+                'Prefer': 'return=representation'
+            },
+            body: JSON.stringify(detailsData)
+        });
+        if (!response.ok) {
+            const error = await response.json();
+            throw new Error(error.message || 'Error al crear el detalle de venta');
+        }
+        return await response.json();
+    } catch (error) {
+        console.error('Create Sale Detail Error:', error);
+        throw error;
+    }
+}
+
+async function updateSale(saleId, saleData) {
+    try {
+        const response = await fetch(`${SUPABASE_URL}/rest/v1/venta?id_venta=eq.${saleId}`, {
+            method: 'PATCH',
+            headers: {
+                ...headers,
+                'Prefer': 'return=representation'
+            },
+            body: JSON.stringify(saleData)
+        });
+        if (!response.ok) {
+            const error = await response.json();
+            throw new Error(error.message || 'Error al actualizar la venta');
+        }
+        return await response.json();
+    } catch (error) {
+        console.error('Update Sale Error:', error);
+        throw error;
+    }
+}
+
 // Global UI Notifications
 window.showToast = (message, type = 'success', action = null) => {
     let container = document.getElementById('toast-container');
@@ -298,5 +362,8 @@ window.api = {
     updateProduct,
     getWishlist,
     addToWishlist: addToWishlistApi,
-    removeFromWishlist: removeFromWishlistApi
+    removeFromWishlist: removeFromWishlistApi,
+    createSale,
+    createSaleDetail,
+    updateSale
 };

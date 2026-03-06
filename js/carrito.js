@@ -98,9 +98,13 @@ document.addEventListener('DOMContentLoaded', () => {
             return;
         }
 
-        showToast('Procesando compra de ' + totalEl.innerText, 'success');
-        // Here we would call a backend function to create the sale in 'venta' table
-        // But for UI/UX simulation, this is enough for now.
+        const cart = JSON.parse(localStorage.getItem('cart') || '[]');
+        if (cart.length === 0) {
+            showToast('Tu carrito está vacío', 'error');
+            return;
+        }
+
+        window.location.href = 'checkout.html';
     };
 
     renderCart();

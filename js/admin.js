@@ -105,15 +105,28 @@ function renderSales(sales) {
                         <th class="px-6 py-4 font-bold">Cliente</th>
                         <th class="px-6 py-4 font-bold">Fecha</th>
                         <th class="px-6 py-4 font-bold text-right">Total</th>
+                        <th class="px-6 py-4 font-bold text-center">Estado</th>
                     </tr>
                 </thead>
                 <tbody class="divide-y divide-slate-100 dark:divide-slate-800">
                     ${sales.map(s => `
-                        <tr>
+                        <tr class="hover:bg-slate-50 dark:hover:bg-slate-800/50 transition-colors">
                             <td class="px-6 py-4 font-bold">#${s.id_venta}</td>
-                            <td class="px-6 py-4">${s.cliente ? `${s.cliente.nombres} ${s.cliente.apellidos}` : 'N/A'}</td>
+                            <td class="px-6 py-4">
+                                <p class="font-bold">${s.cliente ? `${s.cliente.nombres} ${s.cliente.apellidos}` : 'N/A'}</p>
+                                <p class="text-[10px] text-slate-500">${s.metodo_pago || 'N/A'}</p>
+                            </td>
                             <td class="px-6 py-4">${new Date(s.fecha).toLocaleDateString()}</td>
                             <td class="px-6 py-4 text-right font-bold text-primary">$${parseFloat(s.total).toLocaleString()}</td>
+                            <td class="px-6 py-4 text-center">
+                                <select onchange="changeSaleStatus(${s.id_venta}, this.value)" 
+                                    class="bg-slate-100 dark:bg-slate-900 border-none rounded-lg text-[11px] font-black uppercase tracking-wider px-3 py-1.5 focus:ring-2 focus:ring-primary/30 transition-all cursor-pointer">
+                                    <option value="PENDIENTE" ${s.estado?.toUpperCase() === 'PENDIENTE' ? 'selected' : ''}>Pendiente</option>
+                                    <option value="COMPLETADO" ${s.estado?.toUpperCase() === 'COMPLETADO' ? 'selected' : ''}>Completado</option>
+                                    <option value="CANCELADO" ${s.estado?.toUpperCase() === 'CANCELADO' ? 'selected' : ''}>Cancelado</option>
+                                    <option value="ENVIADO" ${s.estado?.toUpperCase() === 'ENVIADO' ? 'selected' : ''}>Enviado</option>
+                                </select>
+                            </td>
                         </tr>
                     `).join('')}
                 </tbody>
@@ -121,6 +134,17 @@ function renderSales(sales) {
         </div>
     `;
 }
+
+window.changeSaleStatus = async (saleId, newStatus) => {
+    try {
+        await api.updateSale(saleId, { estado: newStatus });
+        showToast(`Estado de venta #${saleId} actualizado a ${newStatus}`, 'success');
+    } catch (error) {
+        showToast('Error al actualizar estado: ' + error.message, 'error');
+        // Reload section to revert UI if failed
+        showSection('sales');
+    }
+};
 
 function renderInventory(products) {
     const container = document.getElementById('content-container');
